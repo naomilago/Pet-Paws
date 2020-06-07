@@ -9,6 +9,8 @@ import api from '../../services/api'
 import './styles.css'
 import logo from '../../assets/logo.svg'
 
+import SuccessModal from '../../components/SuccessModal';
+
 interface Category {
   id: number;
   title: string;
@@ -31,6 +33,7 @@ const CreatePetPoint = () => {
   const [cities, setCities] = useState<string[]>([])
 
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0])
+  const [modalVisibility, setModalVisibility] = useState(false);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -224,150 +227,155 @@ const CreatePetPoint = () => {
 
     await api.post('petpoints', data)
 
-    alert('Ponto de coleta criado!')
+    setModalVisibility(true);
 
-    history.push('/')
+    // history.push('/')
   }
 
   return (
-    <div id="page-create-point">
-      <header>
-        <img src={logo} alt="PetPaws"/>
+    <>
+      { (modalVisibility == true) ? <SuccessModal /> : <></>}
+      <div id="page-create-point">
+        <header>
+          <Link to="/">
+            <img src={logo} alt="PetPaws"/>
+          </Link>
 
-        <Link to="/">
-          <FiArrowLeft />
-          Voltar para home
-        </Link>
-      </header>
+          <Link to="/">
+            <FiArrowLeft />
+            Voltar para home
+          </Link>
+        </header>
 
-      <form onSubmit={handleSubmit}>
-        <h1>Cadastro do meu Pet</h1>
+        <form onSubmit={handleSubmit}>
+          <h1>Cadastro do meu Pet</h1>
 
-        <fieldset>
-          <legend>
-            <h2>Dados Pessoais</h2>
-          </legend>
-
-          <div className="field">
-            <label htmlFor="username">Nome do(a) doador(a)</label>
-            <input 
-              type="text"
-              name="username"
-              id="username"
-              onChange={handleInputChange}
-            />
-
-            <br />
-
-            <div className="field-group">
-              <div className="field">
-                <label htmlFor="email">E-mail</label>
-                <input 
-                  type="email"
-                  name="email"
-                  id="email"
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="username">WhatsApp</label>
-                <input 
-                  type="text"
-                  name="whatsapp"
-                  id="whatsapp"
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>
-            <h2>Dados do Pet</h2>
-          </legend>
+          <fieldset>
+            <legend>
+              <h2>Dados Pessoais</h2>
+            </legend>
 
             <div className="field">
-              <label htmlFor="petname">Nome do pet</label>
+              <label htmlFor="username">Nome do(a) doador(a)</label>
               <input 
                 type="text"
-                name="petname"
-                id="petname"
+                name="username"
+                id="username"
                 onChange={handleInputChange}
               />
 
               <br />
 
-              <label htmlFor="description">Descrição</label>
-              <textarea 
-                name="description"
-                id="description"
-                onChange={handleTextareaChange}
+              <div className="field-group">
+                <div className="field">
+                  <label htmlFor="email">E-mail</label>
+                  <input 
+                    type="email"
+                    name="email"
+                    id="email"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="field">
+                  <label htmlFor="username">WhatsApp</label>
+                  <input 
+                    type="text"
+                    name="whatsapp"
+                    id="whatsapp"
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              <h2>Dados do Pet</h2>
+            </legend>
+
+              <div className="field">
+                <label htmlFor="petname">Nome do pet</label>
+                <input 
+                  type="text"
+                  name="petname"
+                  id="petname"
+                  onChange={handleInputChange}
+                />
+
+                <br />
+
+                <label htmlFor="description">Descrição</label>
+                <textarea 
+                  name="description"
+                  id="description"
+                  onChange={handleTextareaChange}
+                />
+              </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              <h2>Endereço</h2>
+              <span>Selecione o endereço no mapa</span>
+            </legend>
+
+            <Map center={initialPosition} zoom={13} onClick={handleMapClick}>
+              <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
+
+              <Marker position={selectedPosition} />
+            </Map>
+
+            <div className="field-group">
+              <div className="field">
+                <label htmlFor="uf">Estado (UF)</label>
+                <select value={selectedUf} onChange={handleSelectUf} name="uf" id="uf">
+                  <option value="0">Selecione uma UF</option>
+                  {ufs.map(uf => (
+                    <option key={uf} value={uf}>{uf}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="city">Cidade</label>
+                <select value={selectedCity} onChange={handleSelectCity} name="city" id="city">
+                  <option value="0">Selecione uma cidade</option>
+                  {cities.map(city => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+              </div>
             </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset>
-          <legend>
-            <h2>Endereço</h2>
-            <span>Selecione o endereço no mapa</span>
-          </legend>
-
-          <Map center={initialPosition} zoom={13} onClick={handleMapClick}>
-            <TileLayer
-              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <Marker position={selectedPosition} />
-          </Map>
-
-          <div className="field-group">
-            <div className="field">
-              <label htmlFor="uf">Estado (UF)</label>
-              <select value={selectedUf} onChange={handleSelectUf} name="uf" id="uf">
-                <option value="0">Selecione uma UF</option>
-                {ufs.map(uf => (
-                  <option key={uf} value={uf}>{uf}</option>
+          <fieldset>
+            <legend>
+              <h2>Categoria</h2>
+              <span>Selecione a categoria do seu pet</span>
+            </legend>
+  
+            <ul className="items-grid">
+              {category.map(categoryItem => (
+                  <li 
+                    className={selectedItem.includes(categoryItem.id) ? 'selected' : ''} 
+                    key={categoryItem.id} 
+                    onClick={() => handleSelectItem(categoryItem.id)}>
+                    <img src={categoryItem.image_url} alt={categoryItem.title}/>
+                    <span>{categoryItem.title}</span>
+                  </li>
                 ))}
-              </select>
-            </div>
-            <div className="field">
-              <label htmlFor="city">Cidade</label>
-              <select value={selectedCity} onChange={handleSelectCity} name="city" id="city">
-                <option value="0">Selecione uma cidade</option>
-                {cities.map(city => (
-                  <option key={city} value={city}>{city}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </fieldset>
+            </ul>
+          </fieldset>
 
-        <fieldset>
-          <legend>
-            <h2>Categoria</h2>
-            <span>Selecione a categoria do seu pet</span>
-          </legend>
- 
-          <ul className="items-grid">
-            {category.map(categoryItem => (
-                <li 
-                  className={selectedItem.includes(categoryItem.id) ? 'selected' : ''} 
-                  key={categoryItem.id} 
-                  onClick={() => handleSelectItem(categoryItem.id)}>
-                  <img src={categoryItem.image_url} alt={categoryItem.title}/>
-                  <span>{categoryItem.title}</span>
-                </li>
-              ))}
-          </ul>
-        </fieldset>
-
-        <button type="submit">
-          Cadastrar novo pet
-        </button>
-      </form>
-    </div>
+          <button type="submit">
+            Cadastrar novo pet
+          </button>
+        </form>
+      </div>
+    </>
   )
 }
 

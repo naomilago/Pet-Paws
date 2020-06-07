@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #34CB79;
-  --title-color: #322153;
+  --primary-color: #592211;
+  --title-color: #573B57;
   --text-color: #6C6C80;
 }
 
@@ -16,11 +16,11 @@ body {
   color: var(--text-color);
 }
 
-body, input, button {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+body, input, textarea, button {
+  font-family: Comfortaa, Arial, Helvetica, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--title-color);
-  font-family: Ubuntu;
+  font-family: Fredoka One;
 }

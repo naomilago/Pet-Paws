@@ -103,7 +103,6 @@
   max-height: 166px;
   min-width: 602px;
   max-width: 602px;
-  font-family: Roboto, Arial, Helvetica, sans-serif;
   white-space: pre-line;
 }
 
@@ -177,7 +176,7 @@
 }
 
 #page-create-point form button:hover {
-  background: #2FB86E;
+  background: rgb(121, 53, 31);
 }
 
 .items-grid {
@@ -214,6 +213,6 @@
 }
 
 .items-grid li.selected {
-  background: #E1FAEC;
-  border: 2px solid #34CB79;
+  background: rgba(89, 34, 17, .2);
+  border: 2px solid #592211;
 }

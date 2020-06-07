@@ -9,7 +9,7 @@ class CategoryController {
       return {
         id: category.id,
         title: category.title,
-        image_url: `http://localhost:3333/uploads/${category.image}`
+        image_url: `http:///192.168.0.102:3333/uploads/${category.image}`
       }
     })
   

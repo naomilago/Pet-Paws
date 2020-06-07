@@ -16,8 +16,8 @@ const Home = () => {
 
         <main>
           <h1>
-            Adote um <span style={{color: "#34CB79"}}>pet</span> <br />
-            Adote um <span style={{color: "#34CB79"}}>amigo</span>
+            Adote um <span style={{color: "#592211"}}>pet</span> <br />
+            Adote um <span style={{color: "#592211"}}>amigo</span>
           </h1>
           <p>
             Pet Paws é a conexão ideal entre aqueles <br />

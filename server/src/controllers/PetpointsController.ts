@@ -17,9 +17,13 @@ class PetpointsController {
       .distinct()
       .select('petpoints.*')
 
+    const petpoints2 = await knex('petpoints')
+      .join('petpoints_category', 'petpoints.id', '=', 'petpoints_category.petpoints_id')
+      .whereIn('petpoints_category.category_id', parsedCategory)
+      .distinct()
+      .select('petpoints.*')
 
-
-    return res.json(petpoints)
+    return res.json(petpoints2)
   }
   
   async show(req: Request, res: Response) {
