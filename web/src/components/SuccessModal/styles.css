@@ -17,7 +17,7 @@
 }
 
 #modal-success svg {
-  color: rgb(121, 53, 31);
+  color: #C67472;
   height: 64px;
   width: 64px;
 }
@@ -43,5 +43,5 @@
 }
 
 #modal-success button:hover {
-  background: rgb(121, 53, 31);
+  background: rgb(211, 129, 127);
 }

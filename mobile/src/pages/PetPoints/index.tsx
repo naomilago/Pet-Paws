@@ -19,6 +19,7 @@ interface PetPoints {
   id: number,
   petname: string,
   image: string,
+  image_url: string,
   latitude: number,
   longitude: number
 }
@@ -43,7 +44,7 @@ const PetPoints = () => {
   useEffect(() => {
     async function loadPosition() {
       const { status } = await Location.requestPermissionsAsync()
-      
+
       if (status !== 'granted') {
         Alert.alert('Ooops...', 'Precisamos da sua permissão para obtermos a localização.')
         return
@@ -95,26 +96,26 @@ const PetPoints = () => {
     <>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={25} color="#592211" />
+          <Icon name="arrow-left" size={25} color="#C67472" />
         </TouchableOpacity>
 
         <Text style={styles.title}><Emoji name="blush" style={{ fontSize: 20 }} /> Seja bem-vinde!</Text>
         <Text style={styles.description}>Encontre no mapa um pet esperando por você.</Text>
 
         <View style={styles.mapContainer}>
-          { initialPosition[0] !== 0 && (
-            <MapView 
-            style={styles.map}
-            loadingEnabled={initialPosition[0] === 0} 
-            initialRegion={{
-              latitude: initialPosition[0],
-              longitude: initialPosition[1],
-              latitudeDelta: 0.014,
-              longitudeDelta: 0.014,
-           }}>
-             
-             { petPoints.map(petPoint => (
-                <Marker 
+          {initialPosition[0] !== 0 && (
+            <MapView
+              style={styles.map}
+              loadingEnabled={initialPosition[0] === 0}
+              initialRegion={{
+                latitude: initialPosition[0],
+                longitude: initialPosition[1],
+                latitudeDelta: 0.014,
+                longitudeDelta: 0.014,
+              }}>
+
+              {petPoints.map(petPoint => (
+                <Marker
                   key={String(petPoint.id)}
                   style={styles.mapMarker}
                   onPress={() => handleNavigateToDetail(petPoint.id)}
@@ -124,33 +125,33 @@ const PetPoints = () => {
                   }}
                 >
                   <View style={styles.mapMarkerContainer}>
-                    <Image style={styles.mapMarkerImage} source={{ uri: petPoint.image }} />
+                    <Image style={styles.mapMarkerImage} source={{ uri: petPoint.image_url }} />
                     <Text style={styles.mapMarkerTitle}>{petPoint.petname}</Text>
                   </View>
                 </Marker>
-             )) }
+              ))}
 
-          </MapView>
-          ) }
+            </MapView>
+          )}
         </View>
       </View>
       <View style={styles.itemsContainer}>
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 32 }}
-          >
+        >
           {category.map(category => (
-            <TouchableOpacity 
+            <TouchableOpacity
               activeOpacity={0.6}
-              key={String(category.id)} 
+              key={String(category.id)}
               style={[
-                styles.item, 
-                selectedCategory.includes(category.id) ? styles.selectedItem : {} 
-              ]} 
+                styles.item,
+                selectedCategory.includes(category.id) ? styles.selectedItem : {}
+              ]}
               onPress={() => handleSelectItem(category.id)}>
-            <SvgUri width={42} height={42} uri={category.image_url} />
-            <Text style={styles.itemTitle}>{category.title}</Text>
+              <SvgUri width={42} height={42} uri={category.image_url} />
+              <Text style={styles.itemTitle}>{category.title}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -194,13 +195,13 @@ const styles = StyleSheet.create({
 
   mapMarker: {
     width: 90,
-    height: 80, 
+    height: 80,
   },
 
   mapMarkerContainer: {
     width: 90,
     height: 70,
-    backgroundColor: '#592211',
+    backgroundColor: '#C67472',
     flexDirection: 'column',
     borderRadius: 8,
     overflow: 'hidden',
@@ -245,8 +246,8 @@ const styles = StyleSheet.create({
   },
 
   selectedItem: {
-    borderColor: '#592211',
-    backgroundColor: 'rgba(89, 34, 17, 0.2)',
+    borderColor: '#C67472',
+    backgroundColor: 'rgba(198, 116, 114, .1)',
     borderWidth: 2,
   },
 

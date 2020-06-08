@@ -176,7 +176,7 @@
 }
 
 #page-create-point form button:hover {
-  background: rgb(121, 53, 31);
+  background: rgb(211, 129, 127);
 }
 
 .items-grid {
@@ -213,6 +213,6 @@
 }
 
 .items-grid li.selected {
-  background: rgba(89, 34, 17, .2);
-  border: 2px solid #592211;
+  background: rgba(198, 116, 114, .1);
+  border: 2px solid rgb(198, 116, 114);
 }

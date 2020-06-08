@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Feather as Icon, FontAwesome as Icon2 } from '@expo/vector-icons'
-import { View, StyleSheet,TouchableOpacity, Image, Text, SafeAreaView, Linking } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Text, ScrollView, SafeAreaView, Linking } from 'react-native'
 import Constants from 'expo-constants'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { RectButton } from 'react-native-gesture-handler'
@@ -14,6 +14,7 @@ interface Params {
 interface Data {
   petpoint: {
     image: string,
+    image_url: string,
     petname: string,
     description: string,
     username: string,
@@ -39,7 +40,7 @@ const Detail = () => {
     api.get(`petpoints/${routeParams.petpoint_id}`).then(res => {
       setData(res.data)
     })
-  },  [])
+  }, [])
 
   function handleNavigateBack() {
     navigation.goBack()
@@ -62,41 +63,46 @@ const Detail = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-    <View style={styles.container} >
-      <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon style={{ marginTop: 20 }} name="arrow-left" size={25} color="#592211" />
-      </TouchableOpacity>
+      <View style={styles.container} >
+        <TouchableOpacity onPress={handleNavigateBack}>
+          <Icon style={{ marginTop: 20 }} name="arrow-left" size={25} color="#C67472" />
+        </TouchableOpacity>
 
-      <Image style={styles.pointImage} source={{ uri: data.petpoint.image }} />
+        <Image style={styles.pointImage} source={{ uri: data.petpoint.image_url }} />
 
-      <Text style={styles.petPointName}>{data.petpoint.petname}</Text>
-      <Text style={styles.petPointCategory}>{data.category.map(category => category.title).join(', ')}</Text>
+        <Text style={styles.petPointName}>{data.petpoint.petname}</Text>
+        <Text style={styles.petPointCategory}>{data.category.map(category => category.title).join(', ')}</Text>
 
-      <View style={styles.address}>
-        <Text style={styles.titleField}>Descrição</Text>
-  <Text style={styles.dataField}>{data.petpoint.description}</Text>
+        <ScrollView
+          horizontal={false}
+          showsVerticalScrollIndicator={true}
+        >
+          <View style={styles.address}>
+            <Text style={styles.titleField}>Descrição</Text>
+            <Text style={styles.dataField}>{data.petpoint.description}</Text>
+          </View>
+
+          <View style={styles.address}>
+            <Text style={styles.titleField}>Nome do(a) doador(a)</Text>
+            <Text style={styles.dataField}>{data.petpoint.username}</Text>
+          </View>
+
+          <View style={styles.address}>
+            <Text style={styles.titleField}>Endereço</Text>
+            <Text style={styles.dataField}>{data.petpoint.city}, {data.petpoint.uf}</Text>
+          </View>
+        </ScrollView>
       </View>
-
-      <View style={styles.address}>
-        <Text style={styles.titleField}>Nome do(a) doador(a)</Text>
-        <Text style={styles.dataField}>{data.petpoint.username}</Text>
+      <View style={styles.footer}>
+        <RectButton style={styles.button} onPress={handleWhatsapp}>
+          <Icon2 name='whatsapp' size={24} color="#FFF" />
+          <Text style={styles.buttonText}>WhatsApp</Text>
+        </RectButton>
+        <RectButton style={styles.button} onPress={handleComposeMail}>
+          <Icon name='mail' size={24} color="#FFF" />
+          <Text style={styles.buttonText}>E-mail</Text>
+        </RectButton>
       </View>
-
-      <View style={styles.address}>
-        <Text style={styles.titleField}>Endereço</Text>
-        <Text style={styles.dataField}>{data.petpoint.city}, {data.petpoint.uf}</Text>
-      </View>
-    </View>
-    <View style={styles.footer}>
-      <RectButton style={styles.button} onPress={handleWhatsapp}>
-        <Icon2 name='whatsapp' size={24} color="#FFF" />
-        <Text style={styles.buttonText}>WhatsApp</Text>
-      </RectButton>
-      <RectButton style={styles.button} onPress={handleComposeMail}>
-        <Icon name='mail' size={24} color="#FFF" />
-        <Text style={styles.buttonText}>E-mail</Text>
-      </RectButton>
-    </View>
     </SafeAreaView>
   )
 }
@@ -117,7 +123,7 @@ const styles = StyleSheet.create({
   },
 
   petPointName: {
-    color: '#361D36',
+    color: '#564556',
     fontSize: 36,
     fontFamily: 'FredokaOne_400Regular',
     marginTop: 24,
@@ -129,13 +135,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 24,
     marginTop: 8,
-    color: '#592211'
+    color: '#C67472'
   },
 
   address: {
     marginTop: 32,
   },
-  
+
   titleField: {
     color: '#322153',
     fontFamily: 'Comfortaa_700Bold',
@@ -146,6 +152,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Comfortaa_400Regular',
     lineHeight: 24,
     marginTop: 8,
+    textAlign: 'justify',
     color: '#6C6C80'
   },
 
@@ -157,10 +164,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  
+
   button: {
     width: '48%',
-    backgroundColor: '#592211',
+    backgroundColor: '#C67472',
     borderRadius: 10,
     height: 50,
     flexDirection: 'row',

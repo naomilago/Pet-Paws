@@ -25,11 +25,11 @@ const Home = () => {
     sigla: string;
     nome: string;
   }
-  
+
   interface IBGECityResponse {
     nome: string;
   }
-  
+
   interface PickerItem {
     label: string;
     value: string;
@@ -60,11 +60,11 @@ const Home = () => {
   }, [selectedUf]);
 
   return (
-    <ImageBackground 
-      source={require('../../assets/home-background.png')} 
+    <ImageBackground
+      source={require('../../assets/home-background.png')}
       style={styles.container}
-      imageStyle={{ width: 91, height: 549, left: 300, top: 30  }}
-      >
+      imageStyle={{ width: 91, height: 549, left: 300, top: 30 }}
+    >
       <View style={styles.main}>
         <Image source={require('../../assets/logo.png')} />
         <Text style={styles.title}>O lugar ideal para encontrar seu novo pet.</Text>
@@ -73,8 +73,8 @@ const Home = () => {
 
       <View style={styles.footer}>
 
-      <RNPickerSelect
-          style={ pickerSelectStyles }
+        <RNPickerSelect
+          style={pickerSelectStyles}
           onValueChange={(value) => setSelectedUf(value)}
           placeholder={{ label: "Selecione um estado", value: null }}
           items={ufs}
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#361D36',
+    color: '#564556',
     fontSize: 40,
     fontFamily: 'FredokaOne_400Regular',
     maxWidth: 260,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: '#592211',
+    backgroundColor: '#C67472',
     height: 60,
     flexDirection: 'row',
     borderRadius: 10,

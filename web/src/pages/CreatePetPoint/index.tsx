@@ -1,10 +1,12 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
-import { Map, TileLayer, Marker } from 'react-leaflet' 
+import { Map, TileLayer, Marker } from 'react-leaflet'
 import axios from 'axios'
 import { LeafletMouseEvent } from 'leaflet'
 import api from '../../services/api'
+
+import Dropzone from '../../components/Dropzone'
 
 import './styles.css'
 import logo from '../../assets/logo.svg'
@@ -48,6 +50,7 @@ const CreatePetPoint = () => {
   const [selectedCity, setSelectedCity] = useState('0')
   const [selectedItem, setSelectedItem] = useState<number[]>([])
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0])
+  const [selectedFile, setSelectedFile] = useState<File>()
 
   const history = useHistory()
 
@@ -69,7 +72,7 @@ const CreatePetPoint = () => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome').then(res => {
       const ufName = res.data.map(uf => uf.nome)
       const ufInitials = res.data.map(uf => uf.sigla)
-      
+
       setUfs(ufName)
       setUfsInitials(ufInitials)
     })
@@ -82,7 +85,7 @@ const CreatePetPoint = () => {
 
     axios.get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUfInitials}/municipios`).then(res => {
       const cityNames = res.data.map(uf => uf.nome)
-      
+
       setCities(cityNames)
     })
   }, [selectedUfInitials])
@@ -179,7 +182,7 @@ const CreatePetPoint = () => {
   }
 
   function handleSelectCity(e: ChangeEvent<HTMLSelectElement>) {
-    const city = e.target.value 
+    const city = e.target.value
 
     setSelectedCity(city)
   }
@@ -194,7 +197,7 @@ const CreatePetPoint = () => {
     setFormData({ ...formData, [name]: value })
   }
 
-  function handleTextareaChange(e:ChangeEvent<HTMLTextAreaElement>) {
+  function handleTextareaChange(e: ChangeEvent<HTMLTextAreaElement>) {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
   }
@@ -212,17 +215,20 @@ const CreatePetPoint = () => {
     const [latitude, longitude] = selectedPosition
     const category = selectedItem
 
-    const data = {
-      username,
-      email,
-      whatsapp,
-      petname,
-      description,
-      uf,
-      city,
-      latitude,
-      longitude,
-      category
+    const data = new FormData()
+    data.append('username', username)
+    data.append('email', email)
+    data.append('whatsapp', whatsapp)
+    data.append('petname', petname)
+    data.append('description', description)
+    data.append('uf', uf)
+    data.append('city', city)
+    data.append('latitude', String(latitude))
+    data.append('longitude', String(longitude))
+    data.append('category', category.join(','))
+
+    if (selectedFile) {
+      data.append('image', selectedFile)
     }
 
     await api.post('petpoints', data)
@@ -234,11 +240,11 @@ const CreatePetPoint = () => {
 
   return (
     <>
-      { (modalVisibility == true) ? <SuccessModal /> : <></>}
+      {(modalVisibility === true) ? <SuccessModal /> : <></>}
       <div id="page-create-point">
         <header>
           <Link to="/">
-            <img src={logo} alt="PetPaws"/>
+            <img src={logo} alt="PetPaws" />
           </Link>
 
           <Link to="/">
@@ -250,6 +256,8 @@ const CreatePetPoint = () => {
         <form onSubmit={handleSubmit}>
           <h1>Cadastro do meu Pet</h1>
 
+          <Dropzone onFileUploaded={setSelectedFile} />
+
           <fieldset>
             <legend>
               <h2>Dados Pessoais</h2>
@@ -257,7 +265,7 @@ const CreatePetPoint = () => {
 
             <div className="field">
               <label htmlFor="username">Nome do(a) doador(a)</label>
-              <input 
+              <input
                 type="text"
                 name="username"
                 id="username"
@@ -269,7 +277,7 @@ const CreatePetPoint = () => {
               <div className="field-group">
                 <div className="field">
                   <label htmlFor="email">E-mail</label>
-                  <input 
+                  <input
                     type="email"
                     name="email"
                     id="email"
@@ -278,7 +286,7 @@ const CreatePetPoint = () => {
                 </div>
                 <div className="field">
                   <label htmlFor="username">WhatsApp</label>
-                  <input 
+                  <input
                     type="text"
                     name="whatsapp"
                     id="whatsapp"
@@ -294,24 +302,24 @@ const CreatePetPoint = () => {
               <h2>Dados do Pet</h2>
             </legend>
 
-              <div className="field">
-                <label htmlFor="petname">Nome do pet</label>
-                <input 
-                  type="text"
-                  name="petname"
-                  id="petname"
-                  onChange={handleInputChange}
-                />
+            <div className="field">
+              <label htmlFor="petname">Nome do pet</label>
+              <input
+                type="text"
+                name="petname"
+                id="petname"
+                onChange={handleInputChange}
+              />
 
-                <br />
+              <br />
 
-                <label htmlFor="description">Descrição</label>
-                <textarea 
-                  name="description"
-                  id="description"
-                  onChange={handleTextareaChange}
-                />
-              </div>
+              <label htmlFor="description">Descrição</label>
+              <textarea
+                name="description"
+                id="description"
+                onChange={handleTextareaChange}
+              />
+            </div>
           </fieldset>
 
           <fieldset>
@@ -356,17 +364,17 @@ const CreatePetPoint = () => {
               <h2>Categoria</h2>
               <span>Selecione a categoria do seu pet</span>
             </legend>
-  
+
             <ul className="items-grid">
               {category.map(categoryItem => (
-                  <li 
-                    className={selectedItem.includes(categoryItem.id) ? 'selected' : ''} 
-                    key={categoryItem.id} 
-                    onClick={() => handleSelectItem(categoryItem.id)}>
-                    <img src={categoryItem.image_url} alt={categoryItem.title}/>
-                    <span>{categoryItem.title}</span>
-                  </li>
-                ))}
+                <li
+                  className={selectedItem.includes(categoryItem.id) ? 'selected' : ''}
+                  key={categoryItem.id}
+                  onClick={() => handleSelectItem(categoryItem.id)}>
+                  <img src={categoryItem.image_url} alt={categoryItem.title} />
+                  <span>{categoryItem.title}</span>
+                </li>
+              ))}
             </ul>
           </fieldset>
 

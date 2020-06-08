@@ -11,13 +11,13 @@ const Home = () => {
     <div id="page-home">
       <div className="content">
         <header className="homeIllustration">
-          <img src={logo} alt="PetPaws"/>
+          <img src={logo} alt="PetPaws" />
         </header>
 
         <main>
           <h1>
-            Adote um <span style={{color: "#592211"}}>pet</span> <br />
-            Adote um <span style={{color: "#592211"}}>amigo</span>
+            Adote um <span style={{ color: "#C67472" }}>pet</span> <br />
+            Adote um <span style={{ color: "#C67472" }}>amigo</span>
           </h1>
           <p>
             Pet Paws é a conexão ideal entre aqueles <br />

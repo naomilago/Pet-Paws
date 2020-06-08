@@ -57,7 +57,7 @@
 
 #page-home .content main a span {
   display: block;
-  background: #39170D;
+  background: rgba(166, 99, 97, 1);
   width: 72px;
   height: 72px;
 
@@ -80,7 +80,7 @@
 }
 
 #page-home .content main a:hover {
-  background: rgb(121, 53, 31);
+  background: rgb(211, 129, 127);
 }
 
 @media(max-width: 900px) {

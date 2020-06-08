@@ -1,7 +1,11 @@
 :root {
-  --primary-color: #592211;
-  --title-color: #573B57;
+  --primary-color: #C67472;
+  --title-color: #564556;
   --text-color: #6C6C80;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 
 * {
