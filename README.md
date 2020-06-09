@@ -56,7 +56,7 @@ Pet Paws is a project developed for those who wants to donate or adopt a pet. In
 
 <h1 align="center">
     <img alt="Example" title="Example" src=".github/home-web.png" width="600px" />
-    <img alt="Example" title="Example" src=".github/inicio-mobile.jpg" width="200px" />
+    <img alt="Example" title="Example" src=".github/inicio-mobile.jpg" width="160px" />
 </h1>
 
 
