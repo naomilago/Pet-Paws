@@ -1,3 +1,6 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/30effbf683d24630ab97ee3649d0deaa)](https://app.codacy.com/manual/AbnerLago/Pet-Paws?utm_source=github.com&utm_medium=referral&utm_content=AbnerLago/Pet-Paws&utm_campaign=Badge_Grade_Dashboard)
+
 <h1 align="center">:feet: PET PAWS:feet: </h1> 
 
 <br>
