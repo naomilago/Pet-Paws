@@ -55,7 +55,7 @@ An online and completely free event that will help you take the next step in you
 Pet Paws is a project developed for those who wants to donate or adopt a pet. In the website you can fill a form to add a pet for donate and in the mobile app you can see the avaiable pets and contact the donors. 
 
 <h1 align="center">
-    <img alt="Example" title="Example" src=".github/home-web.png" width="600px" />
+    <img alt="Example" title="Example" src=".github/home-web.png" width="640px" />
     <img alt="Example" title="Example" src=".github/inicio-mobile.jpg" width="180px" />
 </h1>
 
