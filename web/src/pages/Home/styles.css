@@ -1,7 +1,6 @@
 #page-home {
   height: 100vh;
-  background: url('../../assets/home-background.svg') no-repeat right bottom;
-  background-size: 50%;
+  width: 100%;
 }
 
 #page-home .content {
@@ -22,11 +21,25 @@
 
 #page-home .content main {
   flex: 1;
-  max-width: 560px;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#page-home .content main .content-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+#page-home .content main .content-wrapper .home-background-img {
+  margin: 10px;
+  width: 500px;
+}
+
+#page-home .content main .content-wrapper .themed-text {
+  color: #C67472;
 }
 
 #page-home .content main h1 {
@@ -38,6 +51,12 @@
   font-size: 20px;
   margin-top: 24px;
   line-height: 38px;
+}
+
+.button-petpoint {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #page-home .content main a {
@@ -56,7 +75,6 @@
 }
 
 #page-home .content main a span {
-  display: block;
   background: rgba(166, 99, 97, 1);
   width: 72px;
   height: 72px;
@@ -103,5 +121,18 @@
 
   #page-home .content main p {
     font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 692px) {
+  #page-home .content main .content-wrapper .home-background-img {
+    width: 100%;
+  }
+  #page-home .content main .content-wrapper {
+    flex-direction: column-reverse;
+  }  
+  #page-home .content main a {
+    justify-content: center;
+    align-items: center;
   }
 }

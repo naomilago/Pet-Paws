@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-dom": "^16.9.8",
     "@types/react-leaflet": "^2.5.1",
     "axios": "^0.19.2",
     "cra-template-typescript": "1.0.3",

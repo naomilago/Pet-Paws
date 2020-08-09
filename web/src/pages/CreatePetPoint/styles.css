@@ -9,11 +9,12 @@
   margin-top: 48px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
 #page-create-point header a {
+  margin-top: 15px;
   color: var(--title-color);
   font-weight: bold;
   text-decoration: none;
@@ -61,6 +62,7 @@
 }
 
 #page-create-point form legend span {
+  margin-top: 15px;
   font-size: 14px;
   font-weight: normal;
   color: var(--text-color);
@@ -100,9 +102,7 @@
   font-size: 16px;
   color: #6C6C80;
   min-height: 166px;
-  max-height: 166px;
-  min-width: 602px;
-  max-width: 602px;
+  width: 100%;  
   white-space: pre-line;
 }
 
@@ -215,4 +215,41 @@
 .items-grid li.selected {
   background: rgba(198, 116, 114, .1);
   border: 2px solid rgb(198, 116, 114);
+}
+
+@media screen and (max-width: 582px) {
+  #page-create-point form .field-group {
+    flex-direction: column;
+  }
+  #page-create-point form .field-group .field + .field {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  #page-create-point header {
+    flex-direction: column;
+  }
+  #page-create-point form legend {
+    flex-direction: column;
+  }
+  .items-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .items-grid li {
+    margin: 15px;  
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #page-create-point form {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #page-create-point form button {
+    align-self: center;
+  }
 }
