@@ -6,25 +6,25 @@
 	:heavy_check_mark: NextLevelWeek 1.0 🚀 Done! :heavy_check_mark:
 </h4>
 <p align="center">
-<a href="https://www.codacy.com/manual/AbnerLago/Pet-Paws?utm_source=github.com&utm_medium=referral&utm_content=AbnerLago/Pet-Paws&utm_campaign=Badge_Grade_Dashboard"><img src="https://app.codacy.com/project/badge/Grade/43a25c77fd4a4101a4ecc0d3df303a1e"/></a>
+<a href="https://www.codacy.com/manual/NaomiLago/Pet-Paws?utm_source=github.com&utm_medium=referral&utm_content=Naomilago/Pet-Paws&utm_campaign=Badge_Grade_Dashboard"><img src="https://app.codacy.com/project/badge/Grade/43a25c77fd4a4101a4ecc0d3df303a1e"/></a>
 	
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/AbnerLago/Pet-Paws">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/NaomiLago/Pet-Paws">
 	
-  <a href="https://www.linkedin.com/in/AbinerLago/">
-    <img alt="Made by Abner Lago" src="https://img.shields.io/badge/made%20by-AbnerLago-%2304D361">
+  <a href="https://www.linkedin.com/in/NaomiLago/">
+    <img alt="Made by Naomi Lago" src="https://img.shields.io/badge/made%20by-NaomiLago-%2304D361">
   </a>
 
   <a aria-label="Completed" href="https://nextlevelweek.com/aulas/booster/1/edicao/1">
     <img src="https://img.shields.io/badge/NLW-DONE-brightgreen?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEVHcExxWsF0XMJzXMJxWcFsUsD///9jRrzY0u6Xh9Gsn9n39fyMecy0qd2bjNJWBT0WAAAABHRSTlMA2Do606wF2QAAAGlJREFUGJVdj1cWwCAIBLEsRU3uf9xobDH8+GZwUYi8i6ucJwrxKE+7D0G9Q4vlYqtmCSjndr4CgCgzlyFgfKfKCVO0LrPKjmiqMxGXkJwNnXskqWG+1oSM+BSwD8f29YLNjvx/OQrn+g99oQSoNmt3PgAAAABJRU5ErkJggg=="></img>
   </a>
   
-  <a href="https://github.com/AbnerLago/Pet-Paws/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/AbnerLago/Pet-Paws">
+  <a href="https://github.com/NaomiLago/Pet-Paws/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/NaomiLago/Pet-Paws">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
-   <a href="https://github.com/AbnerLago/Pet-Paws/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/AbnerLago/Pet-Paws?style=social">
+   <a href="https://github.com/NaomiLago/Pet-Paws/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/NaomiLago/Pet-Paws?style=social">
   </a>
 </p>
 <p align="center">
@@ -126,7 +126,7 @@ $ npm start
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/AbnerLago/Pet-Paws
+$ git clone https://github.com/NaomiLago/Pet-Paws
 
 # Go into the repository
 $ cd Pet-Paws/mobile
@@ -155,9 +155,9 @@ After merging your receipt request to done, you can delete a branch from yours.
 
 ## :memo: License
 
-This project is under the MIT license. See the [LICENSE](https://github.com/AbnerLago/Pet-Paws/blob/master/LICENSE) for details.
+This project is under the MIT license. See the [LICENSE](https://github.com/NaomiLago/Pet-Paws/blob/master/LICENSE) for details.
 
-Made with 💛 by Abner Lago :wave: [Get in touch!](https://www.linkedin.com/in/AbinerLago/)
+Made with 💛 by Naomi Lago :wave: [Get in touch!](https://www.linkedin.com/in/NaomiLago/)
 
 [nodejs]: https://nodejs.org/
 [typescript]: https://www.typescriptlang.org/
